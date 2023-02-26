@@ -537,9 +537,9 @@ export default class FhirWorksStack extends Stack {
             description: 'FHIR API Server',
             entry: path.join(__dirname, '../src/index.ts'),
             handler: 'handler',
-            currentVersionOptions: {
-                provisionedConcurrentExecutions: 5,
-            },
+            // currentVersionOptions: {
+            // provisionedConcurrentExecutions: 5,
+            // },
             bundling: {
                 ...defaultLambdaBundlingOptions,
                 commandHooks: {
@@ -912,7 +912,7 @@ export default class FhirWorksStack extends Stack {
         const subscriptionsMatcher = new NodejsFunction(this, 'subscriptionsMatcher', {
             timeout: Duration.seconds(20),
             memorySize: isDev ? 512 : 1024,
-            reservedConcurrentExecutions: isDev ? 10 : 200,
+            // reservedConcurrentExecutions: isDev ? 10 : 200,
             runtime: Runtime.NODEJS_16_X,
             description: 'Match ddb events against active Subscriptions and emit notifications',
             role: new Role(this, 'subscriptionsMatcherLambdaRole', {
